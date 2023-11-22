@@ -39,14 +39,14 @@ const definition = {
             [103, 'battery', tuya.valueConverter.raw],
             
             // The datapoints below expose values but I can't detect why, I don't find them useful.
-            // [102, 'factory_reset', tuya.valueConverter.raw],
-            // [101, 'set_upper_limit', tuya.valueConverter.setLimit],
-            // [104, 'set_bottom_limit', tuya.valueConverter.setLimit],
-            // [105, 'motor_speed', tuya.valueConverter.raw],
-            // [7],
-            // [13],
-            // [106],
-            // [108],
+            // [102 when opening or closing and charging or not, expose value: 0
+            // [101 when opening or closing and charging or not, expose value: 1
+            // [104 when opening or closing and charging or not, expose value: 10
+            // [105 when opening or closing and charging or not, expose value: 50 
+            // [7] when opening or closing and charging or not, expose value: 2,
+            // [13] when opening or closing and charging or not, expose value: 100,
+            // [106] when opening or closing and charging or not, expose value: 100,
+            // [108] when opening or closing and charging or not, not expose value: "nothing",
         ],
     },
 };
