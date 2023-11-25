@@ -32,21 +32,21 @@ const definition = {
     meta: {
         // All datapoints go in here
         tuyaDatapoints: [
-            [1, 'state', tuya.valueConverterBasic.lookup({'OPEN': tuya.enum(0), 'STOP': tuya.enum(1), 'CLOSE': tuya.enum(2)})],
+            [1, 'state', tuya.valueConverterBasic.lookup({'OPEN': tuya.enum(2), 'STOP': tuya.enum(1), 'CLOSE': tuya.enum(0)})],
             [2, 'position', tuya.valueConverter.coverPosition],
             [3, 'position', tuya.valueConverter.raw],
             [12, 'motor_fault', tuya.valueConverter.trueFalse1],
-            [103, 'battery', tuya.valueConverter.raw],
+            [13, 'battery', tuya.valueConverter.raw],
             
-            // The datapoints below expose values but I can't detect why, I don't find them useful.
-            // [102 when opening or closing and charging or not, expose value: 0
-            // [101 when opening or closing and charging or not, expose value: 1
-            // [104 when opening or closing and charging or not, expose value: 10
-            // [105 when opening or closing and charging or not, expose value: 50 
-            // [7] when opening or closing and charging or not, expose value: 2,
-            // [13] when opening or closing and charging or not, expose value: 100,
-            // [106] when opening or closing and charging or not, expose value: 100,
-            // [108] when opening or closing and charging or not, not expose value: "nothing",
+             //The datapoints below expose values but I can't detect why, I don't find them useful.
+            [102], //when opening or closing and charging or not, expose value: 0
+            [101], //when opening or closing and charging or not, expose value: 1
+            [104], //when opening or closing and charging or not, expose value: 10
+            [105], //when opening or closing and charging or not, expose value: 50 
+            [7], //when opening or closing and charging or not, expose value: 2,
+            [103], //maybe temperature, expose value: 22, 23, 28, 30, 50.. 
+            [106], //when opening or closing and charging or not, expose value: 100,
+            [108], //when opening or closing and charging or not, not expose value: "nothing",
         ],
     },
 };
