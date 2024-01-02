@@ -26,7 +26,11 @@ const definition = {
     toZigbee: [tuya.tz.datapoints],
     onEvent: tuya.onEventSetTime, // Add this if you are getting no converter for 'commandMcuSyncTime'
     configure: tuya.configureMagicPacket,
-    exposes: [e.cover_position().setAccess('position', ea.STATE_SET),e.battery(),e.binary('motor_fault', ea.STATE, true, false),],
+    exposes: [
+        e.cover_position().setAccess('position', ea.STATE_SET),e.battery(),e.binary('motor_fault', ea.STATE, true, false),
+        e.enum('motor_direction', ea.STATE_SET, ['left', 'right']).withDescription('Motor side'),
+        e.enum('set_upper_limit', ea.STATE_SET, ['start', 'stop']).withDescription('Learning')
+    ],
         // Here you should put all functionality that your device exposes
     
     meta: {
@@ -37,10 +41,11 @@ const definition = {
             [3, 'position', tuya.valueConverter.raw],
             [12, 'motor_fault', tuya.valueConverter.trueFalse1],
             [13, 'battery', tuya.valueConverter.raw],
-            
+            [101, 'motor_direction', tuya.valueConverterBasic.lookup({ 'left': tuya.enum(0), 'right': tuya.enum(1) })],
+            [102, 'set_upper_limit', tuya.valueConverterBasic.lookup({ 'start': tuya.enum(0), 'stop': tuya.enum(1) })],
+                                
+                                    
              //The datapoints below expose values but I can't detect why, I don't find them useful.
-            [102], //when opening or closing and charging or not, expose value: 0
-            [101], //when opening or closing and charging or not, expose value: 1
             [104], //when opening or closing and charging or not, expose value: 10
             [105], //when opening or closing and charging or not, expose value: 50 
             [7], //when opening or closing and charging or not, expose value: 2,
