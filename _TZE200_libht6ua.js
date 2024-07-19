@@ -1,10 +1,12 @@
-const fz = require('zigbee-herdsman-converters/converters/fromZigbee');
-const tz = require('zigbee-herdsman-converters/converters/toZigbee');
-const exposes = require('zigbee-herdsman-converters/lib/exposes');
-const reporting = require('zigbee-herdsman-converters/lib/reporting');
-const extend = require('zigbee-herdsman-converters/lib/extend');
-const e = exposes.presets;
+const zigbeeHerdsmanConverters = require('zigbee-herdsman-converters');
+const zigbeeHerdsmanUtils = require('zigbee-herdsman-converters/lib/utils');
+
+
+const exposes = zigbeeHerdsmanConverters['exposes'] || require("zigbee-herdsman-converters/lib/exposes");
 const ea = exposes.access;
+const e = exposes.presets;
+const fz = zigbeeHerdsmanConverters.fromZigbeeConverters || zigbeeHerdsmanConverters.fromZigbee;
+const tz = zigbeeHerdsmanConverters.toZigbeeConverters || zigbeeHerdsmanConverters.toZigbee;
 const tuya = require('zigbee-herdsman-converters/lib/tuya');
 
 const definition = {
